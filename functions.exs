@@ -1,8 +1,8 @@
 
-# 1. 
+# 1.
 # Write a function that accepts three arguments
 # If the first two are 0 return "FizzBuzz"
-# If the first is 0 return "Fizz" 
+# If the first is 0 return "Fizz"
 # if the second is 0 return "Buzz"
 # Otherwise return the third argument
 fizzbuzz = fn
@@ -20,4 +20,4 @@ mrs = prefix.("Mrs.")
 IO.puts mrs.("Daisy")
 IO.puts fizzbuzz.({0, 0, 1})
 IO.puts fizzbuzz.({0, 1, 1})
-IO.puts fizzbuzz.({1, 1, "surprice"})
+IO.puts fizzbuzz.({:foo, 1, :surprice})
