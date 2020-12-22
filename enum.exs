@@ -1,4 +1,15 @@
 defmodule CEnum do
+  # Returns true if fun.(element) is truthy for all elements in enumerable.
+  # all?(fun \\ fn x -> x end, enumerable)
+  def all?(_, []), do: true
+  def all?(fun, [head | tail]) do
+    if fun.(head) do
+      all?(fun, tail)
+    else
+      false
+    end
+  end
+
   def take(0, _), do: []
   def take(n, [head | tail]) when n > 0 do
      [head | take(n-1, tail)]
