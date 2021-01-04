@@ -10,6 +10,12 @@ defmodule CEnum do
     end
   end
 
+  def each(_, []), do: :ok
+  def each(fun, [head | tail]) do
+    fun.(head)
+    each(fun, tail)
+  end
+
   def take(0, _), do: []
   def take(n, [head | tail]) when n > 0 do
      [head | take(n-1, tail)]
