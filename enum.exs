@@ -10,6 +10,15 @@ defmodule CEnum do
     end
   end
 
+  def filter(_, []), do: []
+  def filter(fun, [head | tail]) do
+    if fun.(head) do
+      [head | filter(fun, tail)]
+    else
+      filter(fun, tail)
+    end
+  end
+
   def each(_, []), do: :ok
   def each(fun, [head | tail]) do
     fun.(head)
