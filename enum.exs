@@ -10,6 +10,12 @@ defmodule CEnum do
     end
   end
 
+  def each(_, []), do: :ok
+  def each(fun, [head | tail]) do
+    fun.(head)
+    each(fun, tail)
+  end
+
   def filter(_, []), do: []
   def filter(fun, [head | tail]) do
     if fun.(head) do
@@ -19,11 +25,17 @@ defmodule CEnum do
     end
   end
 
-  def each(_, []), do: :ok
-  def each(fun, [head | tail]) do
-    fun.(head)
-    each(fun, tail)
+  # split(t(), integer()) :: {list(), list()}
+  def split(list, count) do
+    split_list(list, count, [])
   end
+
+  defp split_list([head | tail], count, acc) when count > 0 do
+    split_list(tail, count - 1, [head | acc])
+  end
+  defp split_list(list, 0, acc), do: {:lists.reverse(acc), list}
+  defp split_list([], _, acc), do: {:lists.reverse(acc), []}
+
 
   def take(0, _), do: []
   def take(n, [head | tail]) when n > 0 do
