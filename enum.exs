@@ -25,6 +25,22 @@ defmodule CEnum do
     end
   end
 
+  def flatten(list), do: _flatten(list, [])
+
+
+  defp _flatten([h | t], tail) when is_list(h) do
+    _flatten(h, _flatten(t, tail))
+  end
+  defp _flatten([h | t], tail) do
+    [h, _flatten(t, tail)]
+  end
+  defp _flatten([], tail) do
+    tail
+  end
+
+
+
+
   # split(t(), integer()) :: {list(), list()}
   def split(list, count) do
     split_list(list, count, [])
